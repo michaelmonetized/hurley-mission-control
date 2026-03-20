@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "bun install && bun --cwd apps/web build",
+  "outputDirectory": "apps/web/.next",
+  "env": [
+    {
+      "key": "NEXT_PUBLIC_CONVEX_URL",
+      "description": "Convex deployment URL (e.g., https://xxx.convex.cloud)",
+      "value": ""
+    },
+    {
+      "key": "CONVEX_DEPLOYMENT",
+      "description": "Convex deployment identifier (e.g., dev:hustlestack-us)",
+      "value": ""
+    },
+    {
+      "key": "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+      "description": "Clerk frontend API key",
+      "value": ""
+    },
+    {
+      "key": "CLERK_SECRET_KEY",
+      "description": "Clerk secret key",
+      "value": ""
+    }
+  ]
+}
