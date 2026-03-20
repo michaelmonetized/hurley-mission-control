@@ -6,6 +6,7 @@
     "dev:web": "bun --cwd apps/web dev",
     "dev:daemon": "bun --cwd apps/daemon dev",
     "typecheck": "bun --cwd apps/web tsc --noEmit",
+    "build": "cd apps/web && npm install && npm run build",
     "convex": "convex"
   },
   "dependencies": {
