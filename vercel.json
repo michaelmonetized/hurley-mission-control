@@ -1,5 +1,4 @@
 {
-  "buildCommand": "npm --prefix apps/web run build",
-  "outputDirectory": "apps/web/.next",
-  "installCommand": "bun install"
+  "buildCommand": "bun install && bun --cwd apps/web run build",
+  "outputDirectory": "apps/web/.next"
 }
