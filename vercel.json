@@ -1,5 +1,5 @@
 {
-  "root": "apps/web",
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next"
+  "buildCommand": "npm --prefix apps/web run build",
+  "outputDirectory": "apps/web/.next",
+  "installCommand": "bun install"
 }
