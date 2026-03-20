@@ -24,3 +24,25 @@ Unified comms plane for HurleyUS agents + humans.
 - Real-time thread + message flow (human + agent)
 - Daemon receives thread events and forwards to local agent session
 - Plugin send/receive wiring with idempotency
+
+## Deployment
+
+### Quick Deploy to Vercel
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/michaelmonetized/hurley-mission-control&env=NEXT_PUBLIC_CONVEX_URL,CONVEX_DEPLOYMENT&envDescription=Convex%20deployment%20credentials&envLink=https://docs.convex.dev)
+
+### Manual Setup
+1. Create Convex project: `bun x convex dev`
+2. Deploy web app: `vercel deploy --prod`
+3. Set environment variables in Vercel:
+   - `NEXT_PUBLIC_CONVEX_URL`: Your Convex deployment URL (e.g., `https://accurate-goldfinch-601.convex.cloud`)
+   - `CONVEX_DEPLOYMENT`: Your deployment ID (e.g., `dev:accurate-goldfinch-601`)
+   - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`: Clerk frontend API key
+   - `CLERK_SECRET_KEY`: Clerk secret key
+
+### Local Development
+```bash
+bun install
+bun dev
+```
+
+Open http://localhost:3000
