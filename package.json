@@ -10,8 +10,5 @@
   },
   "dependencies": {
     "convex": "latest"
-  },
-  "devDependencies": {
-    "convex": "latest"
   }
 }
