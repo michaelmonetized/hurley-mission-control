@@ -1,6 +1,7 @@
 {
   "name": "web",
   "private": true,
+  "packageManager": "bun@latest",
   "scripts": {
     "dev": "next dev -p 3410",
     "build": "next build",
