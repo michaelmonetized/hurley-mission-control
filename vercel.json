@@ -1,12 +1,6 @@
 {
   "version": 2,
-  "projects": [
-    {
-      "name": "hurley-mission-control",
-      "root": "apps/web",
-      "buildCommand": "npm run build",
-      "installCommand": "npm install --legacy-peer-deps",
-      "dev": "npm run dev"
-    }
-  ]
+  "buildCommand": "npm run build",
+  "installCommand": "npm --prefix apps/web install --legacy-peer-deps",
+  "outputDirectory": "apps/web/.next"
 }
