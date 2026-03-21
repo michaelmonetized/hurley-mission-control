@@ -23,9 +23,9 @@
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "../../",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["apps/web/*"],
+      "@/*": ["./*"],
       "@convex/*": ["convex/*"]
     },
     "allowJs": true,
