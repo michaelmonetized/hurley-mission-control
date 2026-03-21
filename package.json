@@ -1,7 +1,6 @@
 {
   "name": "hurley-mission-control",
   "private": true,
-  "workspaces": ["apps/*", "packages/*"],
   "scripts": {
     "dev:web": "bun --cwd apps/web dev",
     "dev:daemon": "bun --cwd apps/daemon dev",
