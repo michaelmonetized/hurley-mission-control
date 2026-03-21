@@ -8,7 +8,19 @@ export const getThreads = query({
     const threads = await ctx.db
       .query("threads")
       .collect();
-    return threads.filter((thread: any) => thread.members.includes(userId));
+    
+    const filtered: any[] = [];
+    for (const thread of threads) {
+      if (thread && thread.members && Array.isArray(thread.members)) {
+        for (const member of thread.members) {
+          if (member === userId) {
+            filtered.push(thread);
+            break;
+          }
+        }
+      }
+    }
+    return filtered;
   },
 });
 
