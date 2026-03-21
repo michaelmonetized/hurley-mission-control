@@ -1,0 +1,3 @@
+{
+  "/dashboard/[threadId]/page": "app/dashboard/[threadId]/page.js"
+}

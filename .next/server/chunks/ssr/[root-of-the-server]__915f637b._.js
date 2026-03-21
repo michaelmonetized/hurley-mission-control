@@ -1,0 +1,3 @@
+module.exports=[18622,(a,b,c)=>{b.exports=a.x("next/dist/compiled/next-server/app-page-turbo.runtime.prod.js",()=>require("next/dist/compiled/next-server/app-page-turbo.runtime.prod.js"))},42602,(a,b,c)=>{"use strict";b.exports=a.r(18622)},87924,(a,b,c)=>{"use strict";b.exports=a.r(42602).vendored["react-ssr"].ReactJsxRuntime},72131,(a,b,c)=>{"use strict";b.exports=a.r(42602).vendored["react-ssr"].React},17749,a=>{"use strict";var b=a.i(87924),c=a.i(72131);a.i(11241);var d=a.i(96373);let e=new d.ConvexReactClient("https://accurate-goldfinch-601.convex.cloud");function f({children:a}){return(0,c.useEffect)(()=>{},[]),(0,b.jsx)(d.ConvexProvider,{client:e,children:a})}a.s(["ConvexClientProvider",()=>f])}];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__915f637b._.js.map
