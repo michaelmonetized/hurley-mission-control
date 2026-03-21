@@ -1,5 +1,9 @@
 {
-  "installCommand": "npm install",
-  "buildCommand": "npm --prefix apps/web run build",
-  "outputDirectory": "apps/web/.next"
+  "version": 2,
+  "builds": [
+    {
+      "src": "apps/web/package.json",
+      "use": "@vercel/next"
+    }
+  ]
 }
