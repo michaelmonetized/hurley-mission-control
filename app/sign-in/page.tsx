@@ -2,10 +2,12 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useMutation } from 'convex/react';
+import { api } from '@convex/_generated/api';
 
 export default function SignIn() {
   const router = useRouter();
-  const [testUserId] = useState('user_test_001');
+  const createUser = useMutation(api.mutations.createUser);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -14,30 +16,24 @@ export default function SignIn() {
     setError('');
 
     try {
-      // Sync user with Convex
-      const response = await fetch('/api/sync-user', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          clerkId: testUserId,
-          displayName: 'Test User',
-        }),
+      const testUserId = `test_user_${Date.now()}`;
+      const displayName = 'Test User';
+
+      // Create user directly with Convex mutation
+      const userId = await createUser({
+        kind: 'human',
+        clerkId: testUserId,
+        displayName,
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to sync user');
-      }
-
-      const data = await response.json();
-      const userId = data.userId;
 
       // Store in localStorage
       localStorage.setItem('testUserId', testUserId);
-      localStorage.setItem('testUserName', 'Test User');
+      localStorage.setItem('testUserName', displayName);
       localStorage.setItem('userId', userId);
 
       router.push('/dashboard');
     } catch (err) {
+      console.error('Sign in failed:', err);
       setError(err instanceof Error ? err.message : 'Sign in failed');
       setIsLoading(false);
     }
@@ -78,8 +74,8 @@ export default function SignIn() {
           </div>
 
           <div className="text-center text-sm text-gray-600">
-            <p>Note: Clerk authentication keys are being configured.</p>
-            <p className="mt-2">Use test account for development.</p>
+            <p>Note: Using test account for development.</p>
+            <p className="mt-2">Clerk authentication coming in Phase 2.</p>
           </div>
         </div>
 
