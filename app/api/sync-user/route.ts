@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const CONVEX_URL = process.env.NEXT_PUBLIC_CONVEX_URL || "http://localhost:3210";
+const CONVEX_URL = process.env.NEXT_PUBLIC_CONVEX_URL || "https://accurate-goldfinch-601.convex.cloud";
 
 export async function POST(request: NextRequest) {
   try {
