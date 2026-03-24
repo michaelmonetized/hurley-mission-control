@@ -14,14 +14,21 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if user exists by making HTTP call to Convex
-    const queryResponse = await fetch(`${CONVEX_URL}/api/query`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        path: "queries:getUserByClerkId",
-        args: { clerkId },
-      }),
-    }).then((r) => r.json());
+    let queryResponse;
+    try {
+      const queryRes = await fetch(`${CONVEX_URL}/api/query`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          path: "queries:getUserByClerkId",
+          args: { clerkId },
+        }),
+      });
+      queryResponse = await queryRes.json();
+    } catch (fetchErr) {
+      console.error("Query fetch failed:", fetchErr);
+      throw fetchErr;
+    }
 
     if (queryResponse && !queryResponse.error && queryResponse.value) {
       return NextResponse.json(
@@ -31,21 +38,28 @@ export async function POST(request: NextRequest) {
     }
 
     // Create new user
-    const mutationResponse = await fetch(`${CONVEX_URL}/api/mutation`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        path: "mutations:createUser",
-        args: {
-          kind: "human",
-          clerkId,
-          displayName,
-        },
-      }),
-    }).then((r) => r.json());
+    let mutationResponse;
+    try {
+      const mutRes = await fetch(`${CONVEX_URL}/api/mutation`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          path: "mutations:createUser",
+          args: {
+            kind: "human",
+            clerkId,
+            displayName,
+          },
+        }),
+      });
+      mutationResponse = await mutRes.json();
+    } catch (fetchErr) {
+      console.error("Mutation fetch failed:", fetchErr);
+      throw fetchErr;
+    }
 
     if (mutationResponse?.error) {
-      throw new Error(mutationResponse.error);
+      throw new Error(`Mutation error: ${mutationResponse.error}`);
     }
 
     return NextResponse.json(
@@ -53,9 +67,10 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Failed to sync user:", error);
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("Failed to sync user:", errorMsg);
     return NextResponse.json(
-      { error: "Failed to sync user" },
+      { error: "Failed to sync user", details: process.env.NODE_ENV === "development" ? errorMsg : undefined },
       { status: 500 }
     );
   }
