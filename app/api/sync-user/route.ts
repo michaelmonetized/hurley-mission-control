@@ -23,9 +23,9 @@ export async function POST(request: NextRequest) {
       }),
     }).then((r) => r.json());
 
-    if (queryResponse && !queryResponse.error) {
+    if (queryResponse && !queryResponse.error && queryResponse.value) {
       return NextResponse.json(
-        { userId: queryResponse.value?._id || queryResponse._id },
+        { userId: queryResponse.value._id },
         { status: 200 }
       );
     }
